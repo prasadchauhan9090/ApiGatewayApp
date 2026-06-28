@@ -2,7 +2,7 @@ package com.chauhan.controller;
 
 import com.chauhan.model.Rating;
 import com.chauhan.model.RatingRequest;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
