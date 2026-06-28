@@ -1,5 +1,16 @@
+server:
+  port: 8080
+
 movie-service:
   url: http://localhost:8081/movies
 
 rating-service:
-  url: http://local host:8082/ratings
+  url: http://localhost:8082/ratings
+
+admin:
+  username: user
+  password: user123
+
+logging:
+  level:
+    org.springframework.security: DEBUG

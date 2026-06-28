@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
@@ -29,6 +30,7 @@ public class AdminController {
     public ResponseEntity<Object> addMovie(@RequestBody Movie movie) {
 
         try {
+
             log.info("Adding movie {}", movie);
 
             Movie savedMovie = restTemplate.postForObject(
@@ -46,6 +48,13 @@ public class AdminController {
             return ResponseEntity.status(ex.getStatusCode())
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(ex.getResponseBodyAsString());
+
+        } catch (ResourceAccessException ex) {
+
+            log.error("Movie Service Unavailable: {}", ex.getMessage());
+
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .body("Movie Service is unavailable.");
         }
     }
 
@@ -69,6 +78,13 @@ public class AdminController {
             return ResponseEntity.status(ex.getStatusCode())
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(ex.getResponseBodyAsString());
+
+        } catch (ResourceAccessException ex) {
+
+            log.error("Movie Service Unavailable: {}", ex.getMessage());
+
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .body("Movie Service is unavailable.");
         }
     }
 
@@ -91,6 +107,13 @@ public class AdminController {
             return ResponseEntity.status(ex.getStatusCode())
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(ex.getResponseBodyAsString());
+
+        } catch (ResourceAccessException ex) {
+
+            log.error("Movie Service Unavailable: {}", ex.getMessage());
+
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .body("Movie Service is unavailable.");
         }
 
         Rating rating;
@@ -122,6 +145,17 @@ public class AdminController {
                         0
                 );
             }
+
+        } catch (ResourceAccessException ex) {
+
+            log.warn("Rating Service Unavailable: {}", ex.getMessage());
+
+            rating = new Rating(
+                    null,
+                    movie.getName(),
+                    -1.0,
+                    0
+            );
         }
 
         MovieRating movieRating = new MovieRating();
