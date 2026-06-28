@@ -4,7 +4,6 @@ package com.chauhan.controller;
 import com.chauhan.model.Movie;
 import com.chauhan.model.MovieRating;
 import com.chauhan.model.Rating;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Value;
 
 
 
@@ -27,8 +27,7 @@ public class AdminController {
     private String movieServiceUrl;
 
     @Value("${rating-service.url}")
-    private String ratingsServiceUrl;
-
+    private String ratingServiceUrl;
 
     @PostMapping
     public ResponseEntity<Object> addMovie(@RequestBody Movie movie) {
