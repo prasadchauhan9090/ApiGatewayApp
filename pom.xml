@@ -98,26 +98,13 @@
 	<build>
 		<plugins>
 
-			<!-- Spring Boot Plugin -->
+			<!-- Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-
-				<configuration>
-					<image>
-						<name>${env.DOCKERHUB_USER}/movie-service:latest</name>
-
-						<publish>true</publish>
-
-						<publishRegistry>
-							<username>${env.DOCKERHUB_USER}</username>
-							<password>${env.DOCKERHUB_PWD}</password>
-						</publishRegistry>
-					</image>
-				</configuration>
 			</plugin>
 
-			<!-- Maven Compiler -->
+			<!-- Maven Compiler Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
