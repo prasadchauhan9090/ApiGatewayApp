@@ -12,6 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -36,5 +39,5 @@ jobs:
         run: |
           mvn spring-boot:build-image \
             -DskipTests \
-            -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USER }}/movie-service:latest \
+            -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USER }}/movie-service:latest \
             -Dspring-boot.build-image.publish=true
